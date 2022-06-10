@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/1296584179.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screen: {
+
+                        'sm': { 'max': '640px' },
+                        'md': { 'min': '640px', 'max': '991px' }
+                    }
+
+                },
+            },
+
+        }
+    </script>
+
+</head>
+
+<body class="m-0 p-0 outline-0 border-0 font-500 font-outfit text-2xl">
+    <div class="border-b-2 shadow-md">
+
+        <nav class="flex container sm:space-x-60 lg:justify-between p-10 align-middle">
+            <div>
+                <h1 class="font-bold text-gray-500">Blog</h1>
+            </div>
+            <div class="sm:hidden lg:flex">
+                <ul class="flex space-x-10 text-gray-400">
+                    <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
+                    <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                    <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
+                    <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                </ul>
+            </div>
+            <div class="lg:hidden sm:space-x-5">
+                <i class="fa-solid fa-bars"></i>
+                <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="sm:hidden lg:flex lg:space-x-3 ">
+                <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </nav>
+    </div>
+
+    <div class="bg-[url('./images/blog.jpg')] w-full overflow-hidden bg-no-repeat bg-cover bg-center">
+        <div class="sm:flex sm:justify-center sm:items-center sm:min-h-screen">
+            <div class="sm:bg-white sm:w-96  lg:w-2/5 sm:rounded-lg sm:p-10  sm:flex sm:flex-col sm:justify-center sm:items-center">
+                <h1 class="font-bold text-3xl text-gray-600">Explore Yourself</h1>
+                <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                    about life and ask the bigger
+                    questions. Take the weekend off from the technology .</p>
+                <button type="button"
+                    class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold" id="btn">Explore</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- list of blog -->
+
+    <div  id="blogs" class="hidden overflow-hidden">
+    <div class="sm:flex sm:flex-row sm:w-96 lg:w-full sm:m-8 sm:space-x-8">
+        <div class="bg-white w-2/5 rounded-lg p-10  flex flex-col justify-center items-center">
+            <h1 class="font-bold text-3xl text-gray-600">First Blog</h1>
+            <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                about life and ask the bigger
+                questions. Take the weekend off from the technology .</p>
+            <button type="button"
+                class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold">Read more
+                </button>
+        </div>
+
+
+        <div class="bg-white  w-2/5 rounded-lg p-10  flex flex-col justify-center items-center">
+            <h1 class="font-bold text-3xl text-gray-600">Second Blog</h1>
+            <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                about life and ask the bigger
+                questions. Take the weekend off from the technology .</p>
+            <button type="button"
+                class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold">Read more</button>
+        </div>
+
+
+        <div class="bg-white  w-2/5 rounded-lg p-10  flex flex-col justify-center items-center">
+            <h1 class="font-bold text-3xl text-gray-600">Third Blog</h1>
+            <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                about life and ask the bigger
+                questions. Take the weekend off from the technology .</p>
+            <button type="button"
+                class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold">Read more</button>
+        </div>
+        </div>
+
+        <div class="sm:flex sm:flex-row sm:mt-10 sm:m-8 sm:w-96 lg:w-full sm:space-x-8">
+        <div class="bg-white w-2/5  rounded-lg p-10  flex flex-col justify-center items-center">
+            <h1 class="font-bold text-3xl text-gray-600">Fourth Blog</h1>
+            <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                about life and ask the bigger
+                questions. Take the weekend off from the technology .</p>
+            <button type="button"
+                class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold">Read more
+                </button>
+        </div>
+
+
+        <div class="bg-white w-2/5 rounded-lg p-10  flex flex-col justify-center items-center">
+            <h1 class="font-bold text-3xl text-gray-600">Fifth Blog</h1>
+            <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                about life and ask the bigger
+                questions. Take the weekend off from the technology .</p>
+            <button type="button"
+                class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold">Read more</button>
+        </div>
+
+
+        <div class="bg-white w-2/5 rounded-lg p-10  flex flex-col justify-center items-center">
+            <h1 class="font-bold text-3xl text-gray-600">Sixth Blog</h1>
+            <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                about life and ask the bigger
+                questions. Take the weekend off from the technology .</p>
+            <button type="button"
+                class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold">Read more</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    <script src="blog.js">
+       
+    </script>
+</body>
+
+</html>

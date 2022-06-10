@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/1296584179.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screen: {
+
+                        'sm': { 'max': '640px' },
+                        'md': { 'min': '640px', 'max': '991px' }
+                    }
+
+                },
+            },
+
+        }
+    </script>
+</head>
+
+<body class="bg-[url('./images/contact.jpg')] w-full min-h-screen bg-no-repeat bg-cover bg-center m-0 p-0 outline-0 border-0 font-500 font-outfit text-2xl">
+
+
+    <div class="border-b-2 shadow-md bg-white">
+
+        <nav class="flex container sm:space-x-60 lg:justify-between p-10 align-middle">
+            <div>
+                <h1 class="font-bold text-gray-500">Blog</h1>
+            </div>
+            <div class="sm:hidden  lg:flex">
+                <ul class="flex space-x-10 text-gray-400">
+                    <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
+                    <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                    <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
+                    <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                </ul>
+            </div>
+            <div class="lg:hidden sm:space-x-5">
+                <i class="fa-solid fa-bars"></i>
+                <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="sm:hidden lg:flex lg:space-x-3 ">
+                <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </nav>
+    </div>
+
+
+
+    <div class="flex justify-center items-center min-h-screen pb-16">
+        <div class="bg-white sm:w-3/5 lg:w-2/5  rounded-lg">
+            <h1 class="flex justify-center items-center text-2xl font-bold m-6">Contact me</h1>
+            <div class="flex flex-col justify-center items-center">
+                <input type="text" placeholder="Name" class="p-4 mb-3 outline-0 border-2 rounded-lg shadow-lg w-96 bg-gray-50">
+                <input type="text" placeholder="Email" class="p-4 mb-3 outline-0 border-2 rounded-lg shadow-lg w-96 bg-gray-50">
+                <input type="text" placeholder="Number"
+                    class="p-4 mb-3 outline-0 border-2 rounded-lg shadow-lg w-96 bg-gray-50">
+                <input type="text" placeholder="Subject" class="p-4 mb-3  outline-0 border-2 rounded-lg shadow-lg w-96 bg-gray-50">
+                <textarea type="text" placeholder="message"
+                    class="p-4 mb-3 outline-0 border-2 rounded-lg shadow-lg w-96 bg-gray-50"></textarea>
+                    <button type="button" class="border-2 mb-4 rounded-lg bg-gray-400 text-white w-28 h-10 font-bold">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white w-full h-40 border-t-2 sm:space-x-8  sm:justify-between  sm:flex sm:justify-center sm:items-center">
+        <div>
+            <h1 class="sm:pl-8"><i class="fa-solid fa-copyright"></i>2022 blog | Contact</h1>
+        </div>
+        
+        <div class="sm:space-x-3" >
+        <span class="lg:pl-8 font-medium hover:text-indigo-500">Facebook</span><i class="fa-brands fa-facebook"></i>
+        <span class="lg:pl-8 font-medium hover:text-indigo-500">Twitter</span><i class="fa-brands fa-twitter-square"></i>
+        <span class="lg:pl-8 font-medium hover:text-indigo-500">Instagram</span><i class="fa-brands fa-instagram-square"></i>
+        <span class="lg:pl-8 font-medium hover:text-indigo-500">E-mail</span><i class="fa-solid fa-envelope"></i>
+        <span class="lg:pl-8 font-medium hover:text-indigo-500">Call</span><i class="fa-solid fa-phone lg:pr-10"></i>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
