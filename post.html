@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +24,7 @@
         }
     </script>
 </head>
+
 <body class="m-0 p-0 outline-0 border-0 font-500 font-outfit text-2xl">
     <div class="border-b-2 shadow-md">
 
@@ -39,7 +41,7 @@
                 </ul>
             </div>
             <div class="lg:hidden sm:space-x-5">
-                <i class="fa-solid fa-bars"></i>
+                <i id="toogler" class="fa-solid fa-bars"></i>
                 <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
@@ -50,32 +52,131 @@
         </nav>
     </div>
 
-    <div id="posts">
+    <div class="bg-gradient-to-r from-indigo-400 to-purple-400">
+        <div id="box" class="sm:hidden lg:hidden sm:flex  sm:justify-center sm:items-center">
+            <div
+                class="sm:overflow-hidden h-52 w-52 sm:bg-gray-200  sm:flex  sm:justify-center sm:items-center mt-0 sm:rounded-lg sm:border-2 sm:shadow-lg">
+                <ul class="sm:flex sm:flex-col sm:space-y-5  sm:text-gray-400">
+                    <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
+                    <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                    <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
+                    <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                </ul>
+            </div>
+        </div>
 
-    
+        <div id="posts" class="grid grid-x-5 grid-y-5 grid-cols-3 ">
+        </div>
+
+
+        <div class="text-gray-300 flex items-center p-10 space-x-8 justify-center">
+
+            <div id="list"></div>
+            <div id="pagi"></div>
+            
+        </div>
+
+
+
     </div>
     <script>
-        let response = fetch('https://jsonplaceholder.typicode.com/posts')
-    .then((res) => {
-        return res.json();
+        let response = fetch('https://dummyjson.com/posts')
+            .then((res) => {
+                return res.json();
+            })
+            .then((post) => {
+                console.log(post);
+                let lists = post.posts;
+                let Data = "";
+                post.posts.map((data) => {
+                    Data += `
+                <div class="">
+                <div class="group bg-gray-200 bg-no-repeat bg-cover overflow-hidden w-5/6 h-[900px] ml-12 mt-8 shadow-lg rounded-lg p-8  ">
+                    <h1 class=" font-outfit font-bold text-slate-700 text-2xl pb-5 flex flex-col justify-center items-center">Id:${data.id}</h1>
+                    <h1 class="text-2xl pb-5 text-gray-500 font-medium"><bold class="font-bold text-slate-700">Title:</bold>${data.title}</h1>
+                    <h1 class=" font-bold text-slate-700 text-2xl pb-5">UserId:${data.userId}</h1>
+                    <h1 class="text-2xl font-medium  text-gray-500 pb-5"><bold class="font-bold text-slate-700">Tags:</bold>${data.tags}</h1>
+                    <h1 class=" font-bold text-slate-700 text-2xl pb-5">Reactions:${data.reactions}</h1>
+                    <p class="font-medium text-2xl text-gray-500 pb-5"><bold class="font-bold text-slate-700">Body:</bold>${data.body}</p>
+                    <div class="flex flex-col justify-center items-center">
+                        
+                    <button onClick="detail(${data.id})" type="button" class="hidden group-hover:block bg-gray-400 text-white h-10 w-44 rounded-lg font-bold">Read more</button>
+                    
+                    </div>
+                    </div></div>`;
+                });
+                document.getElementById('posts').innerHTML = Data;
+                
+            
+
+        function detail(id) {
+            localStorage.setItem("postId", id);
+            window.location.href = "detail.html";
+
+        }
+
+        
+        const element = document.getElementById('list')
+        const pagi = document.getElementById('pagi')
+        
+
+        let page = 1;
+        let rows = 2;
+
+
+        function pagination(items, wrapper, row_per_page, page) {
+            wrapper.innerHTML = "";
+            page--;
+            let trimStart = row_per_page * page;
+            let trimEnd = trimStart + row_per_page;
+            let trimedData = items.slice(trimStart, trimEnd)
+
+            for (let i = 0; i < trimedData.length; i++) {
+                let item = trimedData[i];
+
+                let item_element = document.createElement('div');
+                item_element.classList.add('item');
+                item_element.innerHTML = item.id;
+
+                wrapper.appendChild(item_element);
+            }
+        }
+
+        function setPagination(items, wrapper, row_per_page){
+            wrapper.innerHTML = "";
+
+            let paginated = Math.ceil(items.length / row_per_page);
+            for (let i = 1; i < paginated + 1; i++) {
+
+                let button=buttons(i,items)
+                wrapper.appendChild(button);
+            }
+        }
+
+         function buttons(page,items){
+            let button=document.createElement('button')
+           button.innertext=page;
+           if(page==page)
+           button.classList.add('active')
+           button.addEventListener('click',()=>{
+               page=page;
+               pagination(items,element,rows,page)
+           });
+           return button;
+        }
+        
+
+        pagination(lists, element, rows, page)
+        setPagination(lists, pagi, rows)
+
     })
-    .then((post) => {
-        console.log(post);
-        let Data="";
-        post.map((data) => {
-            Data+= `
-                <div>
-                    <h1 class="id">Id:${data.id}</h1>
-                    <h1 class="title">Title:${data.title}</h1>
-                    <p class="body">Body:${data.body}</p>
-                    </div>`;
-        });
-        document.getElementById('posts').innerHTML = Data;
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+            .catch((err) => {
+                console.log(err);
+            })
+
 
     </script>
+    <script src="blog.js"></script>
 </body>
+
 </html>

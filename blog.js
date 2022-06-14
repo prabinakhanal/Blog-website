@@ -1,20 +1,10 @@
+const toogler = document.getElementById('toogler');
+const box = document.getElementById('box');
 
 
- blog = document.getElementById('blogs')
- button = document.getElementById('btn')
- 
- 
- 
- button.addEventListener('click', () => {
-     blog.classList.remove('hidden')
- })
- 
- 
- 
- 
- async function post(){
-     let response=await fetch();
-     let result=await response.json();
- }
 
+toogler.addEventListener("click",() => {
+box.classList.remove('sm:hidden');
+toogler.classList.add('hidden');
+})
 

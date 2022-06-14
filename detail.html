@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/1296584179.js" crossorigin="anonymous"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -23,6 +25,7 @@
     </script>
 
 </head>
+
 <body class="m-0 p-0 outline-0 border-0 font-500 font-outfit text-2xl">
 
     <div class="border-b-2 shadow-md">
@@ -40,7 +43,7 @@
                 </ul>
             </div>
             <div class="lg:hidden sm:space-x-5">
-                <i class="fa-solid fa-bars"></i>
+                <i id="toogler" class="fa-solid fa-bars"></i>
                 <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
@@ -51,34 +54,62 @@
         </nav>
     </div>
 
+
+    <div class="bg-gradient-to-r from-indigo-400 to-purple-400  bg-no-repeat">
+    
+    <div id="box" class="sm:hidden lg:hidden sm:flex  sm:justify-center sm:items-center">
+        <div
+            class="sm:overflow-hidden h-52 w-52 sm:bg-gray-200  sm:flex  sm:justify-center sm:items-center mt-0 sm:rounded-lg sm:border-2 sm:shadow-lg">
+            <ul class="sm:flex sm:flex-col sm:space-y-5  sm:text-gray-400">
+                <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
+                <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
+                <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+            </ul>
+        </div>
+    </div>
+
+
     <div id="comments">
 
     </div>
-    
+</div>
+
 
     <script>
-        
-    let result = fetch('https://jsonplaceholder.typicode.com/comments')
-    .then((result) => {
-        return result.json();
-    })
-    .then((comments) => {
-        //console.log(comments);
-        let Data1="";
-        comments.map((comment) => {
-            Data1+= `
-                <div>
-                    <h1 class="id">Id:${comment.id}</h1>
-                    <h1 class="name">Name:${comment.name}</h1>
-                    <h1 class="email">Email:${comment.email}</h1>
-                    <p class="body">Body:${comment.body}</p>
+ const postId=parseInt(localStorage.getItem("postId"))
+
+        //console.log("POst id>",postId)
+        const url =`https://dummyjson.com/posts/${postId}/comments`
+        let result = fetch(url)
+            .then((result) => {
+                return result.json();
+            })
+            .then((comment) => {
+                console.log(comment);
+                let Data1 = "";
+                comment.comments.map((cmt) => {
+                    Data1+=`
+            <div class="flex justify-center items-center">
+                <div class="bg-gray-200 flex flex-col mt-10 w-1/3  justify-center items-center rounded-lg p-5">
+                    <h1 class="font-bold text-2xl pb-8">Id:${cmt.id}</h1>
+                    <h1 class="font-bold text-2xl pb-8">User:${cmt.user.id},${cmt.user.username}</h1>
+                    <h1 class="font-medium text-2xl pb-8">PostId:${cmt.postId}</h1>
+                    <p class="font-medium">Body:${cmt.body}</p>
+                    <span class="font-medium">10 <i class="fa-solid fa-thumbs-up"></i>
+                        <span class="font-medium">50 <i class="fa-solid fa-eye"></i></span>
+                        </span>
+                    
+                    </div>
                     </div>`;
-        });
-        document.getElementById('comments').innerHTML = Data1;
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+                });
+                document.getElementById('comments').innerHTML = Data1;
+            })
+            .catch((err) => {
+                console.log(err);postId
+            })
     </script>
+    <script src="blog.js"></script>
 </body>
+
 </html>
