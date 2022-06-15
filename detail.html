@@ -32,14 +32,15 @@
 
         <nav class="flex container sm:space-x-60 lg:justify-between p-10 align-middle">
             <div>
-                <h1 class="font-bold text-gray-500">Blog</h1>
+                <h1 class="font-bold text-gray-500"><i class="fa-solid fa-blog"></i>Blog</h1>
             </div>
             <div class="sm:hidden lg:flex">
                 <ul class="flex space-x-10 text-gray-400">
                     <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
-                    <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                    <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Detail</a></li>
                     <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
-                    <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                    <li><a href="detail.html" class="border-b-[3px] border-indigo-300">Comments</a></li>
+                    
                 </ul>
             </div>
             <div class="lg:hidden sm:space-x-5">
@@ -55,16 +56,17 @@
     </div>
 
 
-    <div class="bg-gradient-to-r from-indigo-400 to-purple-400  bg-no-repeat">
+    <div class="bg-gradient-to-r from-indigo-400 to-purple-400  bg-no-repeat bg-cover">
     
     <div id="box" class="sm:hidden lg:hidden sm:flex  sm:justify-center sm:items-center">
         <div
             class="sm:overflow-hidden h-52 w-52 sm:bg-gray-200  sm:flex  sm:justify-center sm:items-center mt-0 sm:rounded-lg sm:border-2 sm:shadow-lg">
             <ul class="sm:flex sm:flex-col sm:space-y-5  sm:text-gray-400">
                 <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
-                <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Detail</a></li>
                 <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
-                <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                <li><a href="detail.html" class="border-b-[3px] border-indigo-300">Comments</a></li>
+                
             </ul>
         </div>
     </div>
@@ -79,7 +81,7 @@
     <script>
  const postId=parseInt(localStorage.getItem("postId"))
 
-        //console.log("POst id>",postId)
+        console.log("POst id>",postId)
         const url =`https://dummyjson.com/posts/${postId}/comments`
         let result = fetch(url)
             .then((result) => {
@@ -91,13 +93,12 @@
                 comment.comments.map((cmt) => {
                     Data1+=`
             <div class="flex justify-center items-center">
-                <div class="bg-gray-200 flex flex-col mt-10 w-1/3  justify-center items-center rounded-lg p-5">
-                    <h1 class="font-bold text-2xl pb-8">Id:${cmt.id}</h1>
-                    <h1 class="font-bold text-2xl pb-8">User:${cmt.user.id},${cmt.user.username}</h1>
-                    <h1 class="font-medium text-2xl pb-8">PostId:${cmt.postId}</h1>
-                    <p class="font-medium">Body:${cmt.body}</p>
-                    <span class="font-medium">10 <i class="fa-solid fa-thumbs-up"></i>
-                        <span class="font-medium">50 <i class="fa-solid fa-eye"></i></span>
+                <div class="bg-[url('./images/comment.jpg')] bg-no-repeat bg-cover flex flex-col  m-8 w-2/5 justify-center items-center rounded-lg p-5">
+                    <br><h1 class="font-medium text-2xl text-slate-700 pb-8"><i class="fa-solid fa-id-badge"></i> ${cmt.postId}</h1>
+                    <h1 class="font-bold text-2xl pb-8 text-slate-700"><i class="fa-solid fa-user"></i>  ${cmt.user.id},${cmt.user.username}</h1>
+                    <p class="font-bold text-2xl text-gray-500">${cmt.body}!!</p><br>
+                    <span class="font-medium text-slate-700">10 <i class="fa-solid fa-thumbs-up"></i>
+                        <span class="font-medium text-slate-700">50 <i class="fa-solid fa-eye"></i></span>
                         </span>
                     
                     </div>

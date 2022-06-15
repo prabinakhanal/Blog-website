@@ -31,19 +31,18 @@
 
         <nav class="flex container sm:space-x-60 lg:justify-between p-10 align-middle">
             <div>
-                <h1 class="font-bold text-gray-500">Blog</h1>
+                <h1 class="font-bold text-gray-500"><i class="fa-solid fa-blog"></i>Blog</h1>
             </div>
             <div class="sm:hidden lg:flex">
                 <ul class="flex space-x-10 text-gray-400">
-                    <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
-                    <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                    <li><a href="index.html" class="border-b-[3px] border-indigo-300">Home</a></li>
                     <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
-                    <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                    
                 </ul>
             </div>
             <div class="lg:hidden sm:space-x-5">
                 <i id="toogler" class="fa-solid fa-bars"></i>
-                <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
+                <input type="text" id="search" class="border-0 outline-0 transparent w-32" placeholder="search here">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="sm:hidden lg:flex lg:space-x-3 ">
@@ -59,10 +58,10 @@
             <div id="box" class="sm:hidden lg:hidden">
                 <div class="sm:overflow-hidden h-52 w-52 sm:bg-gray-200  sm:flex  sm:justify-center sm:items-center mt-0 sm:rounded-lg border-2 sm:shadow-lg">
                     <ul class="sm:flex sm:flex-col sm:space-y-5  sm:text-gray-400">
-                        <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
-                        <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Post</a></li>
+                        <li><a href="index.html" class="hover:border-b-[3px] active border-indigo-300">Home</a></li>
+                        
                         <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
-                        <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Detail page</a></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -70,12 +69,12 @@
             <div
                 class="sm:bg-white sm:w-96  lg:w-2/5 sm:rounded-lg sm:p-10  sm:flex sm:flex-col sm:justify-center sm:items-center">
                 <h1 class="font-bold text-3xl text-gray-600">Explore Yourself</h1>
-                <p class="text-gray-400 p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
+                <p class="text-gray-400 font-medium p-5">Start your day with some deep breaths, sit quietly by yourself, contemplate
                     about life and ask the bigger
                     questions. Take the weekend off from the technology .</p>
                 <a href="post.html">
                     <button type="button"
-                        class="bg-gray-400 text-white rounded-lg items-center justify-center w-32 h-10 font-bold"
+                        class="bg-gray-400 text-white rounded-lg items-center hover:bg-gray-500 justify-center w-32 h-10 font-bold"
                         id="btn">My Blogs</button></a>
             </div>
         </div>
