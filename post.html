@@ -73,79 +73,73 @@
 
             <div class="list flex flex-row" id="list"></div>
             <div class="pagenumber" id="pagi">
-                <!-- <button type="button">1</button>
-                <button type="button">2</button>
-                <button type="button">3</button>
-                <button type="button">4</button> -->
-
             </div>
 
         </div>
-
-
-
     </div>
     <script>
-        let response = fetch('https://dummyjson.com/posts')
+
+        // const search = document.getElementById('search')
+
+        // let users = [];
+
+
+        // search.addEventListener("input", (e) => {
+        //     const value = e.target.value
+        //     console.log(users)
+        // })
+
+        let response = fetch('https://dummyjson.com/posts?limit=150')
             .then((res) => {
                 return res.json();
             })
             .then((post) => {
                 console.log(post);
                 let lists = post.posts;
-                let Data = "";
-                post.posts.map((data) => {
-                    Data += `
-                <div class="">
-                <div class="group bg-[url('./images/detail.jpg')] bg-no-repeat bg-cover overflow-hidden  m-8 h-[530px] mt-8 shadow-lg rounded-lg p-8  ">
-                    <div class="flex flex-row justify-center items-center space-x-8"><h1 class=" font-outfit font-bold text-slate-700 text-2xl pb-5  justify-center items-center"><i class="fa-solid fa-id-badge"></i>  ${data.id}</h1>
-                    <h1 class=" font-bold text-slate-700 text-2xl pb-5"><i class="fa-solid fa-id-card-clip"></i>  ${data.userId}</h1></div>
-                    
-                    <h1 class="text-3xl pb-5 text-slate-800 font-bold"></bold>${data.title}</h1>
-                    <p class="font-medium text-2xl text-gray-500 pb-5">${data.body}</p>
-                    <div class="flex flex-row justify-between"><h1 class="text-2xl font-medium  text-slate-600 pb-5"><i class="fa-solid fa-user-tag"></i>: ${data.tags}</h1>
-                    <h1 class=" font-bold text-slate-600 text-2xl pb-5"><i class="fa-solid fa-heart"></i>  ${data.reactions} </h1>
-                    <h1 class="font-bold text-slate-600 text-2xl"><i class="fa-solid fa-bookmark"></i></h1>
-                    </div>
 
-                    <div class="flex flex-col justify-center items-center"> 
-                    <button onClick="detail(${data.id})" type="button" class="hidden group-hover:block bg-gray-500 text-white h-10 w-44 rounded-lg font-bold">Read more</button>
-                    </div>
-                    </div></div>`;
-                });
-                document.getElementById('posts').innerHTML = Data;
-
-
-        
                 const element = document.getElementById('list')
                 const pagi = document.getElementById('pagi')
 
-
                 let page = 1;
-                let rows = 5;
+                let rows = 30;
 
 
                 function pagination(items, wrapper, row_per_page, page) {
-                    wrapper.innerHTML = "";
+                document.getElementById('posts').innerHTML = "";
                     page--;
                     let trimStart = row_per_page * page;
                     let trimEnd = trimStart + row_per_page;
                     let trimedData = items.slice(trimStart, trimEnd)
-                    console.log (trimedData.length)
+                    console.log(trimedData.length)
 
                     for (let i = 0; i < trimedData.length; i++) {
                         let item = trimedData[i];
+                        let Data = `
+                        <div class="">
+                    <div class="group bg-[url('./images/detail.jpg')] bg-no-repeat bg-cover overflow-hidden  m-8 h-[530px] mt-8 shadow-lg rounded-lg p-8  ">
+                    <div class="flex flex-row justify-center items-center space-x-8"><h1 class=" font-outfit font-bold text-slate-700 text-2xl pb-5  justify-center items-center"><i class="fa-solid fa-id-badge"></i>  ${item.id}</h1>
+                    <h1 class=" font-bold text-slate-700 text-2xl pb-5"><i class="fa-solid fa-id-card-clip"></i>  ${item.userId}</h1></div>
+                    
+                    <h1 class="text-3xl pb-5 text-slate-800 font-bold"></bold>${item.title}</h1>
+                    <p class="font-medium text-2xl text-gray-500 pb-5">${item.body}</p>
+                    <div class="flex flex-row justify-between"><h1 class="text-2xl font-medium  text-slate-600 pb-5"><i class="fa-solid fa-user-tag"></i>: ${item.tags}</h1>
+                    <h1 class=" font-bold text-slate-600 text-2xl pb-5"><i class="fa-solid fa-heart"></i>  ${item.reactions} </h1>
+                    <h1 class="font-bold text-slate-600 text-2xl"><i class="fa-solid fa-bookmark"></i></h1>
+                    </div>
 
-                        let item_element = document.createElement('div');
-                        //item_element.classList.add('item');
-                        item_element.innerHTML = item.id;
-                        wrapper.appendChild(item_element);
+                    <div class="flex flex-col justify-center items-center"> 
+                    <button onClick="detail(${items.id})" type="button" class="hidden group-hover:block bg-gray-500 text-white h-10 w-44 rounded-lg font-bold">Read more</button>
+                    </div>
+                     </div></div>`;
+
+                    //     return { Id: data.id, userId: data.userId, Title: data.title }
+
+                        document.getElementById('posts').innerHTML += Data;
+
                     }
                 }
 
                 function setPagination(items, wrapper, row_per_page) {
-                    wrapper.innerHTML = "";
-
                     let paginated = Math.ceil(items.length / row_per_page);
                     for (let i = 1; i < paginated + 1; i++) {
 
@@ -156,21 +150,19 @@
 
                 function buttons(pages, items) {
                     let button = document.createElement('button');
-            
-                    button.innertext = pages;
-                
-                        button.classList.add('bg-gray-500','text-white','h-10','w-20','hover:bg-gray-700')
+                    console.log('page:',pages)
+                    button.innerText = pages;
+
+                    button.classList.add('bg-gray-500', 'text-white', 'h-10', 'w-20', 'hover:bg-blue-500','rounded-lg','m-3','font-bold')
                     button.addEventListener('click', () => {
                         page = pages;
                         pagination(items, element, rows, page)
-                        // let current_btn = document.querySelector('.pagenumber button.active');
-                        // current_btn.classList.remove('active');
-                        // button.classList.add('active')
+                        
                     });
                     return button;
                 }
-  
-                
+
+
                 pagination(lists, element, rows, page)
                 setPagination(lists, pagi, rows)
 
@@ -179,14 +171,14 @@
                 console.log(err);
             })
 
-            function detail(id) {
-                    localStorage.setItem("postId", id);
-                    window.location.href = "detail.html";
+        function detail(id) {
+            localStorage.setItem("postId", id);
+            window.location.href = "detail.html";
 
-                }
+        }
 
-            
-            
+
+
 
 
     </script>
