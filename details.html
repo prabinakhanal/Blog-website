@@ -39,7 +39,8 @@
                     <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
                     <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Detail</a></li>
                     <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
-                    <li><a href="detail.html" class="border-b-[3px] border-indigo-300">Comments</a></li>
+                    <li><a href="detail.html" class="hover:border-b-[3px] border-indigo-300">Comments</a></li>
+                    <li><a href="details.html" class="border-b-[3px] border-indigo-300">Details</a></li>
 
                 </ul>
             </div>
@@ -65,58 +66,70 @@
                     <li><a href="index.html" class="hover:border-b-[3px] border-indigo-300">Home</a></li>
                     <li><a href="post.html" class="hover:border-b-[3px] border-indigo-300">Detail</a></li>
                     <li><a href="contact.html" class="hover:border-b-[3px] border-indigo-300">Contact us</a></li>
-                    <li><a href="detail.html" class=" border-b-[3px] border-indigo-300">Comments</a></li>
+                    <li><a href="details.html" class="border-b-[3px] border-indigo-300">Details</a></li>
 
                 </ul>
             </div>
         </div>
 
-
-        <div id="comments">
+        <div id="details">
 
         </div>
+
+
+
     </div>
 
 
     <script>
-        //  const postId=parseInt(localStorage.getItem("postId"))
-        //   const url =`https://dummyjson.com/posts/${postId}/comments`
-
 
         const queryString = window.location.search;
         console.log(queryString);
         const urlParams = new URLSearchParams(queryString);
         const postId = urlParams.get('id')
         console.log(postId);
+        const url = `https://dummyjson.com/posts/${postId}`
 
-        let result = fetch('https://dummyjson.com/posts/' + postId + '/comments')
+        let result = fetch(url)
             .then((result) => {
                 return result.json();
             })
-            .then((comment) => {
-                console.log(comment);
-                let Data1 = "";
-                comment.comments.map((cmt) => {
-                    Data1 +=`
-            <div class="flex justify-center items-center">
-                <div class="bg-white bg-no-repeat bg-cover flex flex-col h-full border-b-4 w-2/5 justify-center items-center rounded-lg p-5">
-                    <h1 class="font-bold text-2xl pb-8 text-slate-700"><i class="fa-solid fa-user"></i>  ${cmt.user.id},${cmt.user.username} </h1>
-                    <p class="font-bold text-2xl text-gray-500">${cmt.body}!!</p><br>
+            
+            .then((detail) => {
+                console.log(detail);
+            let Data2 = "";
+                detail.posts.map((all) => {
+                 Data2 = `<div class="group bg-[url('./images/grey.jpg')] bg-no-repeat bg-cover w-full overflow-hidden  h-screen mt-8 shadow-lg rounded-lg p-8  ">
+                    <div class="flex flex-row justify-center items-center space-x-8"><h1 class=" font-outfit font-bold text-slate-700 text-2xl pb-5  justify-center items-center"><i class="fa-solid fa-id-badge"></i>  ${all.id}</h1>
+                    <h1 class=" font-bold text-slate-700 text-2xl pb-5"><i class="fa-solid fa-id-card-clip"></i>  ${all.userId}</h1></div>
                     
-                    <span class="font-medium text-slate-700">10  <i class="fa-solid fa-thumbs-up"></i>&nbsp &nbsp
-                        <span class="font-medium text-slate-700">50  <i class="fa-solid fa-eye"></i></span>&nbsp &nbsp
-                        <span class="font-medium text-slate-700">Reply  <i class="fa-solid fa-reply"></i></span>&nbsp &nbsp
-                        </span>
-                    
+                    <h1 class="text-3xl pb-5 text-slate-800 font-bold"></bold>${all.title}</h1>
+                    <p class="font-medium text-2xl text-gray-500 pb-5">${all.body}</p>
+                    <div class="flex flex-row justify-between"><h1 class="text-2xl font-medium  text-slate-600 pb-5"><i class="fa-solid fa-user-tag"></i>: ${all.tags}</h1>
+                    <h1 class=" font-bold text-slate-600 text-2xl pb-5"><i class="fa-solid fa-heart"></i>  ${all.reactions} </h1>
+                    <h1 class="font-bold text-slate-600 text-2xl"><i class="fa-solid fa-bookmark"></i></h1>
+                    <button onclick="detail(${all.id})" type="button" class="font-bold text-slate-600 text-2xl"><i class="fa-solid fa-comments"></i></button>
                     </div>
-                    </div>`;
-                });
-                document.getElementById('comments').innerHTML = Data1;
+                        </div>`;
+                    });
+                document.getElementById('details').innerHTML += Data2;
             })
             .catch((err) => {
                 console.log(err);
             })
+        function detail(id) {
+
+            window.location.href = "detail.html?id=" + id;
+
+        }
+
+
     </script>
+
+
+
+
+
     <script src="blog.js"></script>
 </body>
 

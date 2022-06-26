@@ -40,14 +40,18 @@
 
                 </ul>
             </div>
-            <div class="lg:hidden sm:space-x-5">
-                <i id="toogler" class="fa-solid fa-bars"></i>
+            <div class="lg:hidden sm:space-x-5 sm:flex">
+                <i id="toogler" class=" mt-2 fa-solid fa-bars"></i>
                 <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class=" align-middle mt-2 fa-solid fa-magnifying-glass"></i>
+                <button type="button" class="border-2 rounded bg-gray-500 text-white font-medium w-32 h-10">sign
+                    in</button>
             </div>
-            <div class="sm:hidden lg:flex lg:space-x-3 ">
+            <div class="sm:hidden lg:flex lg:space-x-3 align-middle ">
                 <input type="text" class="border-0 outline-0 transparent w-32" placeholder="search here">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class=" align-middle mt-2 fa-solid fa-magnifying-glass"></i>
+                <button type="button" class="border-2 rounded bg-gray-500 text-white font-medium w-32 h-10">sign
+                    in</button>
             </div>
         </nav>
     </div>
@@ -79,20 +83,12 @@
     </div>
     <script>
 
-        // const search = document.getElementById('search')
 
-        // let users = [];
-
-
-        // search.addEventListener("input", (e) => {
-        //     const value = e.target.value
-        //     console.log(users)
-        // })
 
         let response = fetch('https://dummyjson.com/posts?limit=150')
-            .then((res) => {
-                return res.json();
-            })
+            .then(res => res.json())
+
+
             .then((post) => {
                 console.log(post);
                 let lists = post.posts;
@@ -105,7 +101,7 @@
 
 
                 function pagination(items, wrapper, row_per_page, page) {
-                document.getElementById('posts').innerHTML = "";
+                    document.getElementById('posts').innerHTML = "";
                     page--;
                     let trimStart = row_per_page * page;
                     let trimEnd = trimStart + row_per_page;
@@ -116,23 +112,16 @@
                         let item = trimedData[i];
                         let Data = `
                         <div class="">
-                    <div class="group bg-[url('./images/detail.jpg')] bg-no-repeat bg-cover overflow-hidden  m-8 h-[530px] mt-8 shadow-lg rounded-lg p-8  ">
-                    <div class="flex flex-row justify-center items-center space-x-8"><h1 class=" font-outfit font-bold text-slate-700 text-2xl pb-5  justify-center items-center"><i class="fa-solid fa-id-badge"></i>  ${item.id}</h1>
-                    <h1 class=" font-bold text-slate-700 text-2xl pb-5"><i class="fa-solid fa-id-card-clip"></i>  ${item.userId}</h1></div>
-                    
+                    <div class="group bg-[url('./images/detail.jpg')] bg-no-repeat bg-cover overflow-hidden  m-8 h-[530px] mt-8 shadow-lg rounded-lg p-8  ">                    
                     <h1 class="text-3xl pb-5 text-slate-800 font-bold"></bold>${item.title}</h1>
                     <p class="font-medium text-2xl text-gray-500 pb-5">${item.body}</p>
                     <div class="flex flex-row justify-between"><h1 class="text-2xl font-medium  text-slate-600 pb-5"><i class="fa-solid fa-user-tag"></i>: ${item.tags}</h1>
-                    <h1 class=" font-bold text-slate-600 text-2xl pb-5"><i class="fa-solid fa-heart"></i>  ${item.reactions} </h1>
-                    <h1 class="font-bold text-slate-600 text-2xl"><i class="fa-solid fa-bookmark"></i></h1>
                     </div>
 
                     <div class="flex flex-col justify-center items-center"> 
-                    <button onClick="detail(${items.id})" type="button" class="hidden group-hover:block bg-gray-500 text-white h-10 w-44 rounded-lg font-bold">Read more</button>
+                    <button onClick="postid(${item.id})" type="button" class="hidden group-hover:block bg-gray-500 text-white h-10 w-44 rounded-lg font-bold">Read more</button>
                     </div>
                      </div></div>`;
-
-                    //     return { Id: data.id, userId: data.userId, Title: data.title }
 
                         document.getElementById('posts').innerHTML += Data;
 
@@ -150,14 +139,14 @@
 
                 function buttons(pages, items) {
                     let button = document.createElement('button');
-                    console.log('page:',pages)
+                    console.log('page:', pages)
                     button.innerText = pages;
 
-                    button.classList.add('bg-gray-500', 'text-white', 'h-10', 'w-20', 'hover:bg-blue-500','rounded-lg','m-3','font-bold')
+                    button.classList.add('bg-gray-500', 'text-white', 'h-10', 'w-20', 'hover:bg-blue-500', 'rounded-lg', 'm-3', 'font-bold')
                     button.addEventListener('click', () => {
                         page = pages;
                         pagination(items, element, rows, page)
-                        
+
                     });
                     return button;
                 }
@@ -170,13 +159,11 @@
             .catch((err) => {
                 console.log(err);
             })
-
-        function detail(id) {
-            localStorage.setItem("postId", id);
-            window.location.href = "detail.html";
-
-        }
-
+            function postid(id) {
+            
+            window.location.href ="details.html?id="+id;
+            }
+        
 
 
 
